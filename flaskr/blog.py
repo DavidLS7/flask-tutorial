@@ -6,7 +6,7 @@ from werkzeug.exceptions import abort
 from flaskr.auth import login_required
 from flaskr.db import get_db
 
-bp = Blueprint('blog', __name__)
+bp = Blueprint('blog', __name__, url_prefix='/blog')
 
 
 @bp.route('/')
@@ -97,6 +97,9 @@ def update(id):
 
     return render_template('blog/update.html', post=post)
 
+
+# In another application you might give the blog blueprint a url_prefix and define a separate index view 
+# in the application factory, similar to the hello view. Then the index and blog.index endpoints and URLs would be different.
 
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required

@@ -1,1 +1,12 @@
-<h1>This is the homepage</h1>
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>HOMEPAGE</h1>
+{% endblock %}
+{% block content %}
+  {% if g.user['username'] %}
+    Hi {{ g.user['username'] }}, you are now logged in
+  {% else %}
+    <h2> Please Login to view the data</h2>
+  {% endif %}
+{% endblock %}

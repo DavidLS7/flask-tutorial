@@ -45,6 +45,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        test_variable = "This is a test variable"
         db = get_db()
         error = None
         user = db.execute(
@@ -63,7 +64,7 @@ def login():
 
         flash(error)
 
-    return render_template('auth/login.html')
+    return render_template('auth/login.html' )
 
 @bp.before_app_request
 def load_logged_in_user():

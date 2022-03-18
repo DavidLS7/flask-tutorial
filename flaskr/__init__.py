@@ -29,14 +29,14 @@ def create_app(test_config=None):
     # a simple page for users who are not logged in 
     @app.route('/')
     def index():
-        return 'Logged In'
-        # return render_template('/index.html')
+        # return 'Logged In'
+        return render_template('/index.html')
 
     
     # a simple page that says hello
     @app.route('/hello')
     def hello():
-        return 'Hello, World!'
+        return render_template('Hello.html')
 
     # Import and call this function from the factory. Place the new code at the end of the factory function before returning the app.
     def create_app():
