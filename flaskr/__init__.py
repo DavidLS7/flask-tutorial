@@ -1,6 +1,7 @@
 import os
-
 from flask import Flask
+from flask import render_template
+from flaskr.auth import login_required 
 
 # this is a factory function, a design pattern for Flask apps
 def create_app(test_config=None):
@@ -25,15 +26,18 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    # a simple page for users who are not logged in 
+    @app.route('/')
+    def index():
+        return 'Logged In'
+        # return render_template('/index.html')
+
+    
     # a simple page that says hello
     @app.route('/hello')
     def hello():
         return 'Hello, World!'
-    
-    @app.route('/')
-    def index():
-        return 'Logged In'
-    
+
     # Import and call this function from the factory. Place the new code at the end of the factory function before returning the app.
     def create_app():
         app = ...
@@ -47,6 +51,5 @@ def create_app(test_config=None):
     from . import blog
     app.register_blueprint(blog.bp)
     app.add_url_rule('/', endpoint='index')
-
 
     return app
