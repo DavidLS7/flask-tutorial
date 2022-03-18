@@ -37,12 +37,16 @@ def create_app(test_config=None):
     # Import and call this function from the factory. Place the new code at the end of the factory function before returning the app.
     def create_app():
         app = ...
-    # existing code omitted
+    # My understanding is blueprints call the specific dependencies where they are required, for each controller and view
     from . import auth
     app.register_blueprint(auth.bp)
 
-
     from . import db
     db.init_app(app)
+    
+    from . import blog
+    app.register_blueprint(blog.bp)
+    app.add_url_rule('/', endpoint='index')
+
 
     return app
